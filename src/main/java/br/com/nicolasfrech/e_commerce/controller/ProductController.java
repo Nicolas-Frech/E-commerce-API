@@ -1,6 +1,9 @@
 package br.com.nicolasfrech.e_commerce.controller;
 
 import br.com.nicolasfrech.e_commerce.domain.product.*;
+import br.com.nicolasfrech.e_commerce.domain.user.CartDTO;
+import br.com.nicolasfrech.e_commerce.domain.user.User;
+import br.com.nicolasfrech.e_commerce.domain.user.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,9 @@ public class ProductController {
 
     @Autowired
     private ProductRepository repository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping
     @Transactional
@@ -56,6 +62,17 @@ public class ProductController {
         product.update(dto);
 
         return ResponseEntity.ok(new ProductDTOReturn(product));
+    }
+
+    @PostMapping("/carrinho")
+    @Transactional
+    public ResponseEntity addProductToCart(@RequestBody CartDTO dto) {
+        Product product = repository.getReferenceById(dto.productId());
+        User user = userRepository.getReferenceById(dto.userId());
+
+        user.addProduct(product);
+        product.addUser(user);
+        return ResponseEntity.ok().build();
     }
 
 
