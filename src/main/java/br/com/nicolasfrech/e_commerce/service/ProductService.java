@@ -71,14 +71,27 @@ public class ProductService {
     }
 
     public void addProductToCart(CartDTO dto) {
-        try {
+        boolean existProduct = productRepository.existsById(dto.productId());
+        boolean existUser = userRepository.existsById(dto.userId());
+
+        if(!existProduct && !existUser) {
+            throw new ValidationException("Não há produtos nem usuários com esse ID!");
+        }
+
+        else if(!existProduct) {
+            throw new ValidationException("Não há produtos com esse ID!");
+        }
+
+        else if(!existUser) {
+            throw new ValidationException("Não há usuários com esse ID!");
+        }
+
+        else {
             var product = productRepository.getReferenceById(dto.productId());
             var user = userRepository.getReferenceById(dto.userId());
             user.addProduct(product);
             product.addUser(user);
-        } catch (EntityNotFoundException e) {
-            throw new ValidationException("Não há produtos ou usuários com esse ID!");
         }
     }
-
 }
+
