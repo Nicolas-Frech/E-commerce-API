@@ -2,7 +2,6 @@ package br.com.nicolasfrech.e_commerce.service;
 
 import br.com.nicolasfrech.e_commerce.domain.product.*;
 import br.com.nicolasfrech.e_commerce.domain.user.CartDTO;
-import br.com.nicolasfrech.e_commerce.domain.user.User;
 import br.com.nicolasfrech.e_commerce.domain.user.UserRepository;
 import br.com.nicolasfrech.e_commerce.exception.ValidationException;
 import jakarta.persistence.EntityNotFoundException;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {

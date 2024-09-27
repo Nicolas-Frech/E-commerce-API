@@ -6,6 +6,8 @@ import br.com.nicolasfrech.e_commerce.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,11 +20,21 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    AuthenticationManager manager;
+
     @PostMapping
     @Transactional
     public ResponseEntity registUser(@RequestBody @Valid UserDTO dto) {
         var user = userService.registUser(dto);
         return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody @Valid UserDTO dto) {
+        var authentication = manager.authenticate(new UsernamePasswordAuthenticationToken(dto.username(), dto.password()));
+
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")

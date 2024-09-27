@@ -8,12 +8,15 @@ import br.com.nicolasfrech.e_commerce.domain.user.UserRepository;
 import br.com.nicolasfrech.e_commerce.exception.ValidationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -60,5 +63,10 @@ public class UserService {
         } catch (EntityNotFoundException e) {
             throw new ValidationException("Não há um usuário com esse ID!");
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username);
     }
 }
