@@ -4,6 +4,7 @@ import br.com.nicolasfrech.e_commerce.domain.product.*;
 import br.com.nicolasfrech.e_commerce.domain.user.CartDTO;
 import br.com.nicolasfrech.e_commerce.domain.user.User;
 import br.com.nicolasfrech.e_commerce.domain.user.UserRepository;
+import br.com.nicolasfrech.e_commerce.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,61 +18,45 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductRepository repository;
-
-    @Autowired
-    private UserRepository userRepository;
+    ProductService productService;
 
     @PostMapping
     @Transactional
     public ResponseEntity registProduct(@Valid @RequestBody ProductDTO dto) {
-        Product product = new Product(dto);
-        repository.save(product);
-
-        return ResponseEntity.ok(product);
+        productService.registProduct(dto);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
     public ResponseEntity listProducts() {
-        List<Product> productList = repository.findAllByActiveTrue();
-
-        var productDTO = productList.stream().map(ProductDTOReturn::new).toList();
-        return ResponseEntity.ok(productDTO);
+        var products = productService.listProducts();
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{name}")
     public ResponseEntity searchProductByName(@PathVariable String name) {
-        Product product = repository.findByName(name);
-
-        return ResponseEntity.ok(new ProductDTOReturn(product));
+        var product = productService.searchProductByName(name);
+        return ResponseEntity.ok(product);
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity deleteProduct(@PathVariable Long id) {
-        Product product = repository.getReferenceById(id);
-        product.delete();
-
+        productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping
     @Transactional
     public ResponseEntity updateProduct(@RequestBody @Valid ProductDTOUpdate dto) {
-        Product product = repository.getReferenceById(dto.id());
-        product.update(dto);
-
-        return ResponseEntity.ok(new ProductDTOReturn(product));
+        var product = productService.updateProduct(dto);
+        return ResponseEntity.ok(product);
     }
 
     @PostMapping("/carrinho")
     @Transactional
     public ResponseEntity addProductToCart(@RequestBody CartDTO dto) {
-        Product product = repository.getReferenceById(dto.productId());
-        User user = userRepository.getReferenceById(dto.userId());
-
-        user.addProduct(product);
-        product.addUser(user);
+        productService.addProductToCart(dto);
         return ResponseEntity.ok().build();
     }
 
