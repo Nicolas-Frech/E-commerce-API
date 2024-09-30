@@ -1,7 +1,10 @@
 package br.com.nicolasfrech.e_commerce.controller;
 
+import br.com.nicolasfrech.e_commerce.domain.user.User;
 import br.com.nicolasfrech.e_commerce.domain.user.UserDTO;
 
+import br.com.nicolasfrech.e_commerce.infra.security.TokenService;
+import br.com.nicolasfrech.e_commerce.infra.security.TokenJWTDTO;
 import br.com.nicolasfrech.e_commerce.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,9 @@ public class UserController {
     UserService userService;
 
     @Autowired
+    TokenService tokenService;
+
+    @Autowired
     AuthenticationManager manager;
 
     @PostMapping
@@ -33,8 +39,10 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid UserDTO dto) {
         var authentication = manager.authenticate(new UsernamePasswordAuthenticationToken(dto.username(), dto.password()));
+        var tokenJWT = tokenService.createToken((User) authentication.getPrincipal());
 
-        return ResponseEntity.ok().build();
+
+        return ResponseEntity.ok(new TokenJWTDTO(tokenJWT));
     }
 
     @DeleteMapping("/{id}")
