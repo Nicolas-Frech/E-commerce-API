@@ -29,7 +29,7 @@ public class UserController {
     @Autowired
     AuthenticationManager manager;
 
-    @PostMapping
+    @PostMapping("/cadastro")
     @Transactional
     public ResponseEntity registUser(@RequestBody @Valid UserDTO dto) {
         var user = userService.registUser(dto);
