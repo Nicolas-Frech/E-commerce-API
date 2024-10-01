@@ -40,16 +40,15 @@ public class User implements UserDetails {
         this.password = dto.password();
         this.active = true;
         this.products = null;
-        this.role = UserRole.USER;
+        this.role = dto.role();
     }
 
-    public User(String username, String encodedPwd) {
+    public User(String username, String encodedPwd, UserRole role) {
         this.username = username;
         this.password = encodedPwd;
         this.active = true;
         this.products = null;
-        this.role = UserRole.USER
-        ;
+        this.role = role;
     }
 
     public void addProduct(Product product) {
@@ -60,11 +59,6 @@ public class User implements UserDetails {
         this.active = false;
     }
 
-    public void updateRole(UserRole role) {
-        if(role != null) {
-            this.role = role;
-        }
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

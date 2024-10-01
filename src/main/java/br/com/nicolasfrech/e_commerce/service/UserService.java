@@ -28,7 +28,7 @@ public class UserService implements UserDetailsService {
             throw new ValidationException("Usuário já foi registrado!");
         } else {
             String encodedPwd = passwordEncoder.encode(dto.password());
-            User user = new User(dto.username(), encodedPwd);
+            User user = new User(dto.username(), encodedPwd, dto.role());
             userRepository.save(user);
             return new UserDTOReturn(user);
         }
@@ -70,10 +70,5 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username);
-    }
-
-    public void updateUserRole(UpdateUserDTO dto) {
-        var user = userRepository.getReferenceById(dto.id());
-        user.updateRole(dto.role());
     }
 }

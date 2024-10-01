@@ -6,5 +6,6 @@ public record UserDTO(
         @NotBlank
         String username,
         @NotBlank
-        String password) {
+        String password,
+        UserRole role) {
 }

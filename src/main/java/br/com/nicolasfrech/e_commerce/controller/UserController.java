@@ -1,6 +1,5 @@
 package br.com.nicolasfrech.e_commerce.controller;
 
-import br.com.nicolasfrech.e_commerce.domain.user.UpdateUserDTO;
 import br.com.nicolasfrech.e_commerce.domain.user.User;
 import br.com.nicolasfrech.e_commerce.domain.user.UserDTO;
 
@@ -64,13 +63,4 @@ public class UserController {
         var user = userService.detailUser(id);
         return ResponseEntity.ok(user);
     }
-
-    @PutMapping
-    public ResponseEntity updateUserRole(UpdateUserDTO dto) {
-        userService.updateUserRole(dto);
-
-        return ResponseEntity.ok().build();
-    }
-
-
 }

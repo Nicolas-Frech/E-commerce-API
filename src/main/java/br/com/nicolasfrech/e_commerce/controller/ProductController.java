@@ -2,8 +2,6 @@ package br.com.nicolasfrech.e_commerce.controller;
 
 import br.com.nicolasfrech.e_commerce.domain.product.*;
 import br.com.nicolasfrech.e_commerce.domain.user.CartDTO;
-import br.com.nicolasfrech.e_commerce.domain.user.User;
-import br.com.nicolasfrech.e_commerce.domain.user.UserRepository;
 import br.com.nicolasfrech.e_commerce.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/produtos")
