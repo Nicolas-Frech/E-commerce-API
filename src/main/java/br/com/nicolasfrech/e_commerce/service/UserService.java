@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,12 +22,16 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public UserDTOReturn registUser(UserDTO dto) {
         var existUser = userRepository.existsByUsername(dto.username());
         if(existUser) {
             throw new ValidationException("Usuário já foi registrado!");
         } else {
-            User user = new User(dto);
+            String encodedPwd = passwordEncoder.encode(dto.password());
+            User user = new User(dto.username(), encodedPwd);
             userRepository.save(user);
             return new UserDTOReturn(user);
         }

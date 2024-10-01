@@ -38,6 +38,13 @@ public class User implements UserDetails {
         this.products = null;
     }
 
+    public User(String username, String encodedPwd) {
+        this.username = username;
+        this.password = encodedPwd;
+        this.active = true;
+        this.products = null;
+    }
+
     public void addProduct(Product product) {
         products.add(product);
     }
