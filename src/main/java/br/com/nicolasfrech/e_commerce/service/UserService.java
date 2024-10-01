@@ -1,10 +1,7 @@
 package br.com.nicolasfrech.e_commerce.service;
 
 import br.com.nicolasfrech.e_commerce.domain.product.ProductDTOReturn;
-import br.com.nicolasfrech.e_commerce.domain.user.User;
-import br.com.nicolasfrech.e_commerce.domain.user.UserDTO;
-import br.com.nicolasfrech.e_commerce.domain.user.UserDTOReturn;
-import br.com.nicolasfrech.e_commerce.domain.user.UserRepository;
+import br.com.nicolasfrech.e_commerce.domain.user.*;
 import br.com.nicolasfrech.e_commerce.exception.ValidationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,5 +70,10 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username);
+    }
+
+    public void updateUserRole(UpdateUserDTO dto) {
+        var user = userRepository.getReferenceById(dto.id());
+        user.updateRole(dto.role());
     }
 }

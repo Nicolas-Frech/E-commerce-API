@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.sql.Update;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,6 +29,9 @@ public class User implements UserDetails {
     private String password;
     private Boolean active;
 
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
+
     @ManyToMany(mappedBy = "users")
     private List<Product> products;
 
@@ -36,6 +40,7 @@ public class User implements UserDetails {
         this.password = dto.password();
         this.active = true;
         this.products = null;
+        this.role = UserRole.USER;
     }
 
     public User(String username, String encodedPwd) {
@@ -43,6 +48,8 @@ public class User implements UserDetails {
         this.password = encodedPwd;
         this.active = true;
         this.products = null;
+        this.role = UserRole.USER
+        ;
     }
 
     public void addProduct(Product product) {
@@ -53,9 +60,19 @@ public class User implements UserDetails {
         this.active = false;
     }
 
+    public void updateRole(UserRole role) {
+        if(role != null) {
+            this.role = role;
+        }
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        if(this.role == UserRole.ADMIN) {
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        }
+        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+
     }
 
     @Override
