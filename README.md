@@ -18,6 +18,7 @@ E-Commerce API - API REST para um E-commerce com funcionalidades de registro, li
 - Detalhar Usuário;
 - Excluir Usuário;
 - Perfil de Usuário: ADMIN ou USER.
+- Atualização de Perfil para ADMIN ou USER.
 
 
 
