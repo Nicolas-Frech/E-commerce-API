@@ -25,13 +25,13 @@ E-Commerce API - API REST para um E-commerce com funcionalidades de registro, li
 
 As seguintes tecnologias foram utilizadas no desenvolvimento da API do projeto:
 
-Java 22
-Spring Boot 3
-JPA
-Maven
-Lombok
-MySQL
-Hibernate
-Flyway
-Spring Security
-JWT
+- Java 22
+- Spring Boot 3
+- JPA
+- Maven
+- Lombok
+- MySQL
+- Hibernate
+- Flyway
+- Spring Security
+- JWT
