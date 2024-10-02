@@ -1,5 +1,6 @@
 package br.com.nicolasfrech.e_commerce.controller;
 
+import br.com.nicolasfrech.e_commerce.domain.user.UpdateUserDTO;
 import br.com.nicolasfrech.e_commerce.domain.user.User;
 import br.com.nicolasfrech.e_commerce.domain.user.UserDTO;
 
@@ -62,5 +63,12 @@ public class UserController {
     public ResponseEntity detailUser(@PathVariable Long id) {
         var user = userService.detailUser(id);
         return ResponseEntity.ok(user);
+    }
+
+    @PutMapping("{id}")
+    @Transactional
+    public ResponseEntity updateUser(@PathVariable Long id, @RequestBody UpdateUserDTO dto) {
+        userService.updateUser(id, dto);
+        return ResponseEntity.ok().build();
     }
 }

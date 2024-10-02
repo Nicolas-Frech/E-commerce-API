@@ -29,7 +29,7 @@ public class SecurityConfigurations {
                     req.requestMatchers(HttpMethod.POST, "/usuario/login", "/usuario/cadastro").permitAll();
                     req.requestMatchers(HttpMethod.DELETE, "/usuario/*", "/produtos/*").hasRole("ADMIN");
                     req.requestMatchers(HttpMethod.POST, "/produtos").hasRole("ADMIN");
-                    req.requestMatchers(HttpMethod.PUT, "/produtos").hasRole("ADMIN");
+                    req.requestMatchers(HttpMethod.PUT, "/produtos", "/usuario/*").hasRole("ADMIN");
                     req.anyRequest().authenticated();
                 })
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

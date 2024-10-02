@@ -39,7 +39,16 @@ public class UserService implements UserDetailsService {
             var user = userRepository.getReferenceById(id);
             user.delete();
         } catch (EntityNotFoundException e) {
-            throw new ValidationException("Não há um usuário com esse nome!");
+            throw new ValidationException("Não há um usuário com esse ID!");
+        }
+    }
+
+    public void updateUser(Long id ,UpdateUserDTO dto) {
+        try {
+            var user = userRepository.getReferenceById(id);
+            user.update(dto);
+        } catch (EntityNotFoundException e) {
+            throw new ValidationException("Não há um usuário com esse ID!");
         }
     }
 
