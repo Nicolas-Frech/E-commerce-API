@@ -1,11 +1,11 @@
 package br.com.nicolasfrech.e_commerce.controller;
 
-import br.com.nicolasfrech.e_commerce.domain.user.UpdateUserDTO;
+import br.com.nicolasfrech.e_commerce.domain.user.dto.UpdateUserDTO;
 import br.com.nicolasfrech.e_commerce.domain.user.User;
-import br.com.nicolasfrech.e_commerce.domain.user.UserDTO;
+import br.com.nicolasfrech.e_commerce.domain.user.dto.UserDTO;
 
-import br.com.nicolasfrech.e_commerce.infra.security.TokenService;
-import br.com.nicolasfrech.e_commerce.infra.security.TokenJWTDTO;
+import br.com.nicolasfrech.e_commerce.infra.security.token.TokenService;
+import br.com.nicolasfrech.e_commerce.infra.security.token.TokenJWTDTO;
 import br.com.nicolasfrech.e_commerce.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

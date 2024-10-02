@@ -1,4 +1,4 @@
-package br.com.nicolasfrech.e_commerce.infra.security;
+package br.com.nicolasfrech.e_commerce.infra.security.token;
 
 import br.com.nicolasfrech.e_commerce.domain.user.User;
 import com.auth0.jwt.JWT;

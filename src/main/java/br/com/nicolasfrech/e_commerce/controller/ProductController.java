@@ -1,7 +1,8 @@
 package br.com.nicolasfrech.e_commerce.controller;
 
-import br.com.nicolasfrech.e_commerce.domain.product.*;
-import br.com.nicolasfrech.e_commerce.domain.user.CartDTO;
+import br.com.nicolasfrech.e_commerce.domain.product.dto.ProductDTO;
+import br.com.nicolasfrech.e_commerce.domain.product.dto.ProductDTOUpdate;
+import br.com.nicolasfrech.e_commerce.domain.user.dto.CartDTO;
 import br.com.nicolasfrech.e_commerce.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

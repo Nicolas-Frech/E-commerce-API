@@ -1,5 +1,7 @@
 package br.com.nicolasfrech.e_commerce.domain.product;
 
+import br.com.nicolasfrech.e_commerce.domain.product.dto.ProductDTO;
+import br.com.nicolasfrech.e_commerce.domain.product.dto.ProductDTOUpdate;
 import br.com.nicolasfrech.e_commerce.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

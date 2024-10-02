@@ -1,4 +1,6 @@
-package br.com.nicolasfrech.e_commerce.domain.product;
+package br.com.nicolasfrech.e_commerce.domain.product.dto;
+
+import br.com.nicolasfrech.e_commerce.domain.product.Product;
 
 public record ProductDTOReturn(Long id, String name, String description, String price, String quantity) {
 

@@ -1,6 +1,7 @@
 package br.com.nicolasfrech.e_commerce.infra.security;
 
 import br.com.nicolasfrech.e_commerce.domain.user.UserRepository;
+import br.com.nicolasfrech.e_commerce.infra.security.token.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

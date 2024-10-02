@@ -1,9 +1,12 @@
 package br.com.nicolasfrech.e_commerce.service;
 
 import br.com.nicolasfrech.e_commerce.domain.product.*;
-import br.com.nicolasfrech.e_commerce.domain.user.CartDTO;
+import br.com.nicolasfrech.e_commerce.domain.product.dto.ProductDTO;
+import br.com.nicolasfrech.e_commerce.domain.product.dto.ProductDTOReturn;
+import br.com.nicolasfrech.e_commerce.domain.product.dto.ProductDTOUpdate;
+import br.com.nicolasfrech.e_commerce.domain.user.dto.CartDTO;
 import br.com.nicolasfrech.e_commerce.domain.user.UserRepository;
-import br.com.nicolasfrech.e_commerce.exception.ValidationException;
+import br.com.nicolasfrech.e_commerce.infra.exception.ValidationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package br.com.nicolasfrech.e_commerce.exception;
+package br.com.nicolasfrech.e_commerce.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;

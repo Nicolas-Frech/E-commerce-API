@@ -1,4 +1,4 @@
-package br.com.nicolasfrech.e_commerce.domain.user;
+package br.com.nicolasfrech.e_commerce.domain.user.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

@@ -1,8 +1,11 @@
 package br.com.nicolasfrech.e_commerce.service;
 
-import br.com.nicolasfrech.e_commerce.domain.product.ProductDTOReturn;
+import br.com.nicolasfrech.e_commerce.domain.product.dto.ProductDTOReturn;
 import br.com.nicolasfrech.e_commerce.domain.user.*;
-import br.com.nicolasfrech.e_commerce.exception.ValidationException;
+import br.com.nicolasfrech.e_commerce.domain.user.dto.UpdateUserDTO;
+import br.com.nicolasfrech.e_commerce.domain.user.dto.UserDTO;
+import br.com.nicolasfrech.e_commerce.domain.user.dto.UserDTOReturn;
+import br.com.nicolasfrech.e_commerce.infra.exception.ValidationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,7 +46,7 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public void updateUser(Long id ,UpdateUserDTO dto) {
+    public void updateUser(Long id , UpdateUserDTO dto) {
         try {
             var user = userRepository.getReferenceById(id);
             user.update(dto);
