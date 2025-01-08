@@ -35,5 +35,7 @@ As seguintes tecnologias foram utilizadas no desenvolvimento da API do projeto:
 - Flyway
 - Spring Security
 - JWT
+- Docker e Docker Compose
+- Instância EC2 da AWS
 
 Para visualizar os métodos da aplicação: http://18.191.179.130/swagger-ui.html
