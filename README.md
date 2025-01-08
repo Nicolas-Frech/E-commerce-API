@@ -35,3 +35,5 @@ As seguintes tecnologias foram utilizadas no desenvolvimento da API do projeto:
 - Flyway
 - Spring Security
 - JWT
+
+Para visualizar os métodos da aplicação: http://18.191.179.130/swagger-ui.html
