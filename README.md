@@ -39,3 +39,5 @@ As seguintes tecnologias foram utilizadas no desenvolvimento da API do projeto:
 - Instância EC2 da AWS
 
 Para visualizar os métodos da aplicação: http://18.191.179.130/swagger-ui.html
+
+Basta cadastrar um usuário e uma senha, fazer login e pegar o token de acesso para conseguir utilizar os outros métodos!
